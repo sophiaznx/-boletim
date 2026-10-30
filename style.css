@@ -1,0 +1,112 @@
+/* Configurações gerais da página */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #f4f6f8; /* Cinza claro para o fundo */
+  color: #333333; /* Texto num cinza escuro para boa leitura */
+  line-height: 1.6;
+  padding-bottom: 40px;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #2e7d32; /* Verde principal */
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Conteúdo principal */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Seção de Cards */
+.cards-resumo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  flex: 1 1 180px;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px; /* Cantos arredondados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  border-top: 4px solid #81c784; /* Detalhe em verde claro */
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 0.95rem;
+  color: #666666;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.status-frequencia {
+  display: block;
+  font-size: 0.8rem;
+  color: #555555;
+  margin-top: 0.3rem;
+}
+
+/* Tabela Responsiva */
+.tabela-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  overflow-x: auto; /* Permite rolar pro lado no celular se não couber */
+  padding: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th, td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background-color: #e8f5e9; /* Fundo verde bem suave no cabeçalho da tabela */
+  color: #1b5e20;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Zebra light nas linhas da tabela */
+}
+
+/* Destaque das situações */
+.status-bom {
+  color: #2e7d32;
+  font-weight:
