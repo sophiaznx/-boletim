@@ -1,11 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boletim Digital - 9º Ano</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    meu boletim.
+
+  <!-- Cabeçalho principal com o título do projeto e a série -->
+  <header>
+    <h1>Boletim Digital</h1>
+    <p class="subtitulo">9º Ano | Estudante Exemplo</p>
+  </header>
+
+  <main class="container">
+    <!-- Seção de cards com o resumo geral do estudante -->
+    <section class="cards-resumo">
+      <div class="card">
+        <h3>Média Geral</h3>
+        <p id="media-geral">—</p>
+      </div>
+
+      <div class="card">
+        <h3>Total de Faltas</h3>
+        <p id="total-faltas">—</p>
+      </div>
+
+      <div class="card">
+        <h3>Bom Desempenho</h3>
+        <p id="qtd-bom-desempenho">—</p>
+      </div>
+
+      <div class="card">
+        <h3>Precisa de Atenção</h3>
+        <p id="qtd-atencao">—</p>
+      </div>
+
+      <div class="card">
+        <h3>Frequência</h3>
+        <p id="frequencia">92%</p>
+        <span class="status-frequencia">Frequência adequada</span>
+      </div>
+    </section>
+
+    <!-- Tabela para exibição detalhada de cada disciplina -->
+    <section class="tabela-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Disciplina</th>
+            <th>1º Tri</th>
+            <th>2º Tri</th>
+            <th>3º Tri</th>
+            <th>Média</th>
+            <th>Faltas</th>
+            <th>Situação</th>
+          </tr>
+        </thead>
+        <!-- O corpo da tabela será preenchido dinamicamente pelo JavaScript -->
+        <tbody id="corpo-tabela">
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Vinculando o arquivo de script ao final do body -->
+  <script src="script.js"></script>
 </body>
 </html>
