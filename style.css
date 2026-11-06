@@ -331,9 +331,3 @@ tr:hover {
   color: #ff4757;
   font-weight: bold;
   text-shadow: 0 0 6px rgba(255, 71, 87, 0.4);
-}
-
-.status-indisponivel {
-  color: #64748b;
-  font-style: italic;
-}

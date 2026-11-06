@@ -9,6 +9,11 @@ const CONFIG_ALUNO = {
 let pinSessao = "";
 let modoEdicao = false;
 
+// Instâncias dos Gráficos Chart.js
+let graficoMedias = null;
+let graficoEvolucao = null;
+let graficoFaltas = null;
+
 // Dados fictícios locais padronizados (fallback caso não haja dados na API)
 const dadosFicticiosLocais = [
   { disciplina: "Língua Portuguesa", tri1: 78, tri2: "8,2", tri3: 8.6, faltas: [2, 2, 1] },
@@ -313,117 +318,5 @@ function renderizarBoletim() {
 
   // A frequência de 92% é apenas demonstrativa nesta etapa e será tratada de outra forma futuramente
   document.getElementById("frequencia").textContent = "92%";
-}
 
-// Alternar entre modo de leitura e edição
-function alternarModoEdicao() {
-  modoEdicao = !modoEdicao;
-  const btnAlternar = document.getElementById("btn-alternar-edicao");
-  const btnSalvar = document.getElementById("btn-salvar");
-  const msgSalvar = document.getElementById("msg-salvar");
-
-  msgSalvar.textContent = "";
-
-  if (modoEdicao) {
-    btnAlternar.textContent = "Cancelar edição";
-    btnSalvar.style.display = "inline-block";
-  } else {
-    btnAlternar.textContent = "Alterar dados";
-    btnSalvar.style.display = "none";
-  }
-
-  renderizarBoletim();
-}
-
-// Salvar as alterações feitas na API
-async function salvarDadosAPI() {
-  const msgSalvar = document.getElementById("msg-salvar");
-  const inputs = document.querySelectorAll(".input-edicao");
-  
-  let houverErro = false;
-
-  // Remover marcações anteriores de erro
-  inputs.forEach(i => i.classList.remove("input-invalido"));
-
-  // Validação preliminar de todos os inputs da tela
-  inputs.forEach(input => {
-    const tipo = input.dataset.tipo;
-    const valor = input.value;
-
-    if (tipo === "nota") {
-      const res = validarNotaEditada(valor);
-      if (!res.valido) {
-        input.classList.add("input-invalido");
-        houverErro = true;
-      }
-    } else if (tipo === "falta") {
-      const res = validarFaltaEditada(valor);
-      if (!res.valido) {
-        input.classList.add("input-invalido");
-        houverErro = true;
-      }
-    }
-  });
-
-  if (houverErro) {
-    msgSalvar.textContent = "Corrija os campos destacados em vermelho antes de salvar (Notas entre 0 e 10, Faltas inteiras >= 0).";
-    msgSalvar.className = "msg-status msg-erro";
-    return;
-  }
-
-  // Atualizar a estrutura de dados locais com os novos valores validados
-  inputs.forEach(input => {
-    const idx = Number(input.dataset.index);
-    const tipo = input.dataset.tipo;
-    const tri = Number(input.dataset.tri);
-    const val = input.value;
-
-    if (!dadosAtuais[idx]) return;
-
-    if (tipo === "nota") {
-      const valNota = validarNotaEditada(val).valor;
-      if (tri === 0) dadosAtuais[idx].tri1 = valNota;
-      if (tri === 1) dadosAtuais[idx].tri2 = valNota;
-      if (tri === 2) dadosAtuais[idx].tri3 = valNota;
-    } else if (tipo === "falta") {
-      const valFalta = validarFaltaEditada(val).valor;
-      if (!Array.isArray(dadosAtuais[idx].faltas)) {
-        dadosAtuais[idx].faltas = [0, 0, 0];
-      }
-      dadosAtuais[idx].faltas[tri] = valFalta;
-    }
-  });
-
-  msgSalvar.textContent = "Salvando...";
-  msgSalvar.className = "msg-status msg-info";
-
-  try {
-    const resposta = await fetch(`${CONFIG_ALUNO.apiUrl}/api/v1/boletins/salvar`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        turma: CONFIG_ALUNO.turma,
-        numero_chamada: CONFIG_ALUNO.numeroChamada,
-        pin: pinSessao,
-        dados: {
-          disciplinas: dadosAtuais
-        }
-      })
-    });
-
-    if (resposta.ok) {
-      msgSalvar.textContent = "Dados salvos com sucesso.";
-      msgSalvar.className = "msg-status msg-sucesso";
-      modoEdicao = false;
-      document.getElementById("btn-alternar-edicao").textContent = "Alterar dados";
-      document.getElementById("btn-salvar").style.display = "none";
-      renderizarBoletim();
-    } else {
-      msgSalvar.textContent = "Falha ao salvar dados no servidor. Tente novamente.";
-      msgSalvar.className = "msg-status msg-erro";
-    }
-  } catch (erro) {
-    msgSalvar.textContent = "Erro de conexão ao tentar salvar os dados.";
-    msgSalvar.className = "msg-status msg-erro";
-  }
-}
+  // Atualiza a
