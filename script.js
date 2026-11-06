@@ -28,28 +28,7 @@ function normalizarNota(valor) {
   if (typeof valor === "string") {
     valorLimpo = valor.replace(",", ".");
   }
-sc)}</strong></td>
-      <td>${totalFaltasDisc}</td>
-      <td class="${classeSituacao}">${situacao}</td>
-    `;
 
-    corpoTabela.appendChild(tr);
-  });
-
-  // Atualiza os Cards de Resumo no topo
-  const mediaGeralFinal = disciplinasComMedia > 0 ? (somaMediasGerais / disciplinasComMedia).toFixed(1).replace(".", ",") : "—";
-  
-  document.getElementById("media-geral").textContent = mediaGeralFinal;
-  document.getElementById("total-faltas").textContent = totalFaltasGeral;
-  document.getElementById("qtd-bom-desempenho").textContent = countBomDesempenho;
-  document.getElementById("qtd-atencao").textContent = countAtencao;
-
-  // A frequência de 92% e a mensagem são apenas demonstrativas/fictícias nesta etapa inicial
-  document.getElementById("frequencia").textContent = "92%";
-}
-
-// Executa a função ao carregar a página
-carregarBoletim();
   let numero = Number(valorLimpo);
 
   // Se não for um número válido, descarta
@@ -64,112 +43,7 @@ carregarBoletim();
 
   // Verifica se a nota final está no intervalo válido de 0 a 10
   if (numero >= 0 && numero <= 10) {
-    return numero;sc)}</strong></td>
-      <td>${totalFaltasDisc}</td>
-      <td class="${classeSituacao}">${situacao}</td>
-    `;
-
-    corpoTabela.appendChild(tr);
-  });
-
-  // Atualiza os Cards de Resumo no topo
-  const mediaGeralFinal = disciplinasComMedia > 0 ? (somaMediasGerais / disciplinasComMedia).toFixed(1)sc)}</strong></td>
-      <td>${totalFaltasDisc}</td>
-      <td class="${classeSituacao}">${situacao}</td>
-    `;
-
-    corpoTabela.appendChild(tr);
-  });
-
-  // Atualiza os Cards de Resumo no topo
-  const mediaGeralFinal = disciplinasComMedia > 0 ? (somaMediasGerais / disciplinasComMedia).toFixed(1)sc)}</strong></td>
-      <td>${totalFaltasDisc}</td>
-      <td class="${classeSituacao}">${situacao}</td>
-    `;
-
-    corpoTabela.appendChild(tr);
-  });sc)}</strong></td>
-      <td>${totalFaltasDisc}</td>
-      <td class="${classeSituacao}">${situacao}</td>
-    `;
-
-    corpoTabela.appendChild(tr);
-  });
-
-  // Atualiza os Cards de Resumo no topo
-  const mediaGeralFinal = disciplinasComMedia > 0 ? (somaMediasGerais / disciplinasComMedia).toFixed(1).replace(".", ",") : "—";
-  
-  document.getElementById("media-geral").textContent = mediaGeralFinal;
-  document.getElementById("total-faltas").textContent = totalFaltasGeral;
-  document.getElementById("qtd-bom-desempenho").textContent = countBomDesempenho;
-  document.getElementById("qtd-atencao").textContent = countAtencao;
-
-  // A frequência de 92% e a mensagem são apenas demonstrativas/fictícias nesta etapa inicial
-  document.getElementById("frequencia").textContent = "92%";
-}
-
-// Executa a função ao carregar a página
-carregarBoletim();
-
-  // Atualiza os Cards de Resumo no topo
-  const mediaGeralFinal = disciplinasComMedia > 0 ? (somaMediasGerais / disciplinasComMedia).toFixed(1).replace(".", ",") : "—";
-  
-  document.getElementById("media-geral").textContent = mediaGeralFinal;
-  document.getElementById("total-faltas").textContent = totalFaltasGeral;sc)}</strong></td>
-      <td>${totalFaltasDisc}</td>
-      <td class="${classeSituacao}">${situacao}</td>
-    `;
-
-    corpoTabela.appendChild(tr);
-  });
-
-  // Atualiza os Cards de Resumo no topo
-  const mediaGeralFinal = disciplinasComMedia > 0 ? (somaMediasGerais / disciplinasComMedia).toFixed(1).replace(".", ",") : "—";
-  
-  document.getElementById("media-geral").textContent = mediaGeralFinal;
-  document.getElementById("total-faltas").textContent = totalFaltasGeral;
-  document.getElementById("qtd-bom-desempenho").textContent = countBomDesempenho;
-  document.getElementById("qtd-atencao").textContent = countAtencao;
-
-  // A frequência de 92% e a mensagem são apenas demonstrativas/fictícias nesta etapa inicial
-  document.getElementById("frequencia").textContent = "92%";
-}
-
-// Executa a função ao carregar a página
-carregarBoletim();
-  document.getElementById("qtd-bom-desempenho").textContent = countBomDesempenho;
-  document.getElementById("qtd-atencao").textContent = countAtencao;
-
-  // A frequência de 92% e a mensagem são apenas demonstrativas/fictícias nesta etapa inicial
-  document.getElementById("frequencia").textContent = "92%";
-}
-
-// Executa a função ao carregar a página
-carregarBoletim();.replace(".", ",") : "—";
-  
-  document.getElementById("media-geral").textContent = mediaGeralFinal;
-  document.getElementById("total-faltas").textContent = totalFaltasGeral;
-  document.getElementById("qtd-bom-desempenho").textContent = countBomDesempenho;
-  document.getElementById("qtd-atencao").textContent = countAtencao;
-
-  // A frequência de 92% e a mensagem são apenas demonstrativas/fictícias nesta etapa inicial
-  document.getElementById("frequencia").textContent = "92%";
-}
-
-// Executa a função ao carregar a página
-carregarBoletim();.replace(".", ",") : "—";
-  
-  document.getElementById("media-geral").textContent = mediaGeralFinal;
-  document.getElementById("total-faltas").textContent = totalFaltasGeral;
-  document.getElementById("qtd-bom-desempenho").textContent = countBomDesempenho;
-  document.getElementById("qtd-atencao").textContent = countAtencao;
-
-  // A frequência de 92% e a mensagem são apenas demonstrativas/fictícias nesta etapa inicial
-  document.getElementById("frequencia").textContent = "92%";
-}
-
-// Executa a função ao carregar a página
-carregarBoletim();
+    return numero;
   }
 
   return null;
@@ -225,28 +99,7 @@ function carregarBoletim() {
 
     // Criando a linha da tabela dinamicamente
     const tr = document.createElement("tr");
-    tr.innerHTML = `sc)}</strong></td>
-      <td>${totalFaltasDisc}</td>
-      <td class="${classeSituacao}">${situacao}</td>
-    `;
-
-    corpoTabela.appendChild(tr);
-  });
-
-  // Atualiza os Cards de Resumo no topo
-  const mediaGeralFinal = disciplinasComMedia > 0 ? (somaMediasGerais / disciplinasComMedia).toFixed(1).replace(".", ",") : "—";
-  
-  document.getElementById("media-geral").textContent = mediaGeralFinal;
-  document.getElementById("total-faltas").textContent = totalFaltasGeral;
-  document.getElementById("qtd-bom-desempenho").textContent = countBomDesempenho;
-  document.getElementById("qtd-atencao").textContent = countAtencao;
-
-  // A frequência de 92% e a mensagem são apenas demonstrativas/fictícias nesta etapa inicial
-  document.getElementById("frequencia").textContent = "92%";
-}
-
-// Executa a função ao carregar a página
-carregarBoletim();
+    tr.innerHTML = `
       <td><strong>${item.disciplina}</strong></td>
       <td>${formatarExibicao(n1)}</td>
       <td>${formatarExibicao(n2)}</td>
