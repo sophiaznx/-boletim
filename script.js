@@ -218,4 +218,212 @@ function renderizarBoletim() {
 
     // Coluna Nome da Disciplina (Segurança DOM com textContent)
     const tdNome = document.createElement("td");
-    const
+    const strongNome = document.createElement("strong");
+    strongNome.textContent = item.disciplina || "Sem nome";
+    tdNome.appendChild(strongNome);
+    tr.appendChild(tdNome);
+
+    if (modoEdicao) {
+      // Cria inputs para as notas e faltas no modo de edição
+      const criarInput = (valor, tipo, iTri) => {
+        const td = document.createElement("td");
+        const input = document.createElement("input");
+        input.type = "text";
+        input.className = "input-edicao";
+        input.dataset.index = index;
+        input.dataset.tipo = tipo;
+        input.dataset.tri = iTri;
+
+        if (tipo === "nota") {
+          input.value = valor !== null && valor !== undefined ? valor : "";
+        } else {
+          input.value = faltasArray[iTri] !== undefined ? faltasArray[iTri] : 0;
+        }
+
+        td.appendChild(input);
+        return td;
+      };
+
+      tr.appendChild(criarInput(item.tri1, "nota", 0));
+      tr.appendChild(criarInput(item.tri2, "nota", 1));
+      tr.appendChild(criarInput(item.tri3, "nota", 2));
+
+      // Coluna Média
+      const tdMedia = document.createElement("td");
+      tdMedia.textContent = formatarExibicao(mediaDisc);
+      tr.appendChild(tdMedia);
+
+      // Três inputs para faltas por trimestre na edição
+      const tdFaltas = document.createElement("td");
+      tdFaltas.style.display = "flex";
+      tdFaltas.style.gap = "4px";
+      for (let fIdx = 0; fIdx < 3; fIdx++) {
+        const inputF = document.createElement("input");
+        inputF.type = "text";
+        inputF.className = "input-edicao";
+        inputF.style.width = "35px";
+        inputF.dataset.index = index;
+        inputF.dataset.tipo = "falta";
+        inputF.dataset.tri = fIdx;
+        inputF.value = faltasArray[fIdx] !== undefined ? faltasArray[fIdx] : 0;
+        tdFaltas.appendChild(inputF);
+      }
+      tr.appendChild(tdFaltas);
+    } else {
+      // Modo Leitura Normal
+      const tdTri1 = document.createElement("td");
+      tdTri1.textContent = formatarExibicao(n1);
+      tr.appendChild(tdTri1);
+
+      const tdTri2 = document.createElement("td");
+      tdTri2.textContent = formatarExibicao(n2);
+      tr.appendChild(tdTri2);
+
+      const tdTri3 = document.createElement("td");
+      tdTri3.textContent = formatarExibicao(n3);
+      tr.appendChild(tdTri3);
+
+      const tdMedia = document.createElement("td");
+      const strongMedia = document.createElement("strong");
+      strongMedia.textContent = formatarExibicao(mediaDisc);
+      tdMedia.appendChild(strongMedia);
+      tr.appendChild(tdMedia);
+
+      const tdFaltas = document.createElement("td");
+      tdFaltas.textContent = totalFaltasDisc;
+      tr.appendChild(tdFaltas);
+    }
+
+    // Coluna Situação
+    const tdSituacao = document.createElement("td");
+    tdSituacao.className = classeSituacao;
+    tdSituacao.textContent = situacao;
+    tr.appendChild(tdSituacao);
+
+    corpoTabela.appendChild(tr);
+  });
+
+  // Atualização dos Cards
+  const mediaGeralFinal = disciplinasComMedia > 0 ? (somaMediasGerais / disciplinasComMedia).toFixed(1).replace(".", ",") : "—";
+  
+  document.getElementById("media-geral").textContent = mediaGeralFinal;
+  document.getElementById("total-faltas").textContent = totalFaltasGeral;
+  document.getElementById("qtd-bom-desempenho").textContent = countBomDesempenho;
+  document.getElementById("qtd-atencao").textContent = countAtencao;
+
+  // A frequência de 92% é apenas demonstrativa nesta etapa e será tratada de outra forma futuramente
+  document.getElementById("frequencia").textContent = "92%";
+}
+
+// Alternar entre modo de leitura e edição
+function alternarModoEdicao() {
+  modoEdicao = !modoEdicao;
+  const btnAlternar = document.getElementById("btn-alternar-edicao");
+  const btnSalvar = document.getElementById("btn-salvar");
+  const msgSalvar = document.getElementById("msg-salvar");
+
+  msgSalvar.textContent = "";
+
+  if (modoEdicao) {
+    btnAlternar.textContent = "Cancelar edição";
+    btnSalvar.style.display = "inline-block";
+  } else {
+    btnAlternar.textContent = "Alterar dados";
+    btnSalvar.style.display = "none";
+  }
+
+  renderizarBoletim();
+}
+
+// Salvar as alterações feitas na API
+async function salvarDadosAPI() {
+  const msgSalvar = document.getElementById("msg-salvar");
+  const inputs = document.querySelectorAll(".input-edicao");
+  
+  let houverErro = false;
+
+  // Remover marcações anteriores de erro
+  inputs.forEach(i => i.classList.remove("input-invalido"));
+
+  // Validação preliminar de todos os inputs da tela
+  inputs.forEach(input => {
+    const tipo = input.dataset.tipo;
+    const valor = input.value;
+
+    if (tipo === "nota") {
+      const res = validarNotaEditada(valor);
+      if (!res.valido) {
+        input.classList.add("input-invalido");
+        houverErro = true;
+      }
+    } else if (tipo === "falta") {
+      const res = validarFaltaEditada(valor);
+      if (!res.valido) {
+        input.classList.add("input-invalido");
+        houverErro = true;
+      }
+    }
+  });
+
+  if (houverErro) {
+    msgSalvar.textContent = "Corrija os campos destacados em vermelho antes de salvar (Notas entre 0 e 10, Faltas inteiras >= 0).";
+    msgSalvar.className = "msg-status msg-erro";
+    return;
+  }
+
+  // Atualizar a estrutura de dados locais com os novos valores validados
+  inputs.forEach(input => {
+    const idx = Number(input.dataset.index);
+    const tipo = input.dataset.tipo;
+    const tri = Number(input.dataset.tri);
+    const val = input.value;
+
+    if (!dadosAtuais[idx]) return;
+
+    if (tipo === "nota") {
+      const valNota = validarNotaEditada(val).valor;
+      if (tri === 0) dadosAtuais[idx].tri1 = valNota;
+      if (tri === 1) dadosAtuais[idx].tri2 = valNota;
+      if (tri === 2) dadosAtuais[idx].tri3 = valNota;
+    } else if (tipo === "falta") {
+      const valFalta = validarFaltaEditada(val).valor;
+      if (!Array.isArray(dadosAtuais[idx].faltas)) {
+        dadosAtuais[idx].faltas = [0, 0, 0];
+      }
+      dadosAtuais[idx].faltas[tri] = valFalta;
+    }
+  });
+
+  msgSalvar.textContent = "Salvando...";
+  msgSalvar.className = "msg-status msg-info";
+
+  try {
+    const resposta = await fetch(`${CONFIG_ALUNO.apiUrl}/api/v1/boletins/salvar`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        turma: CONFIG_ALUNO.turma,
+        numero_chamada: CONFIG_ALUNO.numeroChamada,
+        pin: pinSessao,
+        dados: {
+          disciplinas: dadosAtuais
+        }
+      })
+    });
+
+    if (resposta.ok) {
+      msgSalvar.textContent = "Dados salvos com sucesso.";
+      msgSalvar.className = "msg-status msg-sucesso";
+      modoEdicao = false;
+      document.getElementById("btn-alternar-edicao").textContent = "Alterar dados";
+      document.getElementById("btn-salvar").style.display = "none";
+      renderizarBoletim();
+    } else {
+      msgSalvar.textContent = "Falha ao salvar dados no servidor. Tente novamente.";
+      msgSalvar.className = "msg-status msg-erro";
+    }
+  } catch (erro) {
+    msgSalvar.textContent = "Erro de conexão ao tentar salvar os dados.";
+    msgSalvar.className = "msg-status msg-erro";
+  }
+}
