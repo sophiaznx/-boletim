@@ -1,88 +1,177 @@
-/* Configurações gerais da página */
+/* Reset e Fontes */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background-color: #f4f6f8; /* Cinza claro para o fundo */
-  color: #333333; /* Texto num cinza escuro para boa leitura */
+  background-color: #0b0f19; /* Fundo escuro Cyberpunk */
+  color: #e2e8f0;
   line-height: 1.6;
-  padding-bottom: 40px;
+  padding-bottom: 50px;
 }
 
-/* Cabeçalho */
+/* Cabeçalho com Brilho LED Neon */
 header {
-  background-color: #2e7d32; /* Verde principal */
-  color: #ffffff;
+  background: linear-gradient(135deg, #0d1527 0%, #172a45 100%);
+  border-bottom: 2px solid #00ff88;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
   text-align: center;
-  padding: 2rem 1rem;
-  margin-bottom: 2rem;
+  padding: 2.5rem 1rem;
+  margin-bottom: 2.5rem;
+  position: relative;
 }
 
 header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
 }
 
 .subtitulo {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1rem;
+  color: #94a3b8;
+  margin-top: 5px;
+  letter-spacing: 1px;
 }
 
-/* Conteúdo principal */
+.badge-status {
+  background: #00ff88;
+  color: #0b0f19;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #00ff88;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+/* Estrutura Principal */
 .container {
-  width: 90%;
-  max-width: 1100px;
+  width: 92%;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Seção de Cards */
+/* Grid dos Cards Resumo */
 .cards-resumo {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .card {
-  flex: 1 1 180px;
-  background-color: #ffffff;
+  flex: 1 1 200px;
+  background: #131c2e;
   padding: 1.5rem;
-  border-radius: 12px; /* Cantos arredondados */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra suave */
-  border-top: 4px solid #81c784; /* Detalhe em verde claro */
-  text-align: center;
+  border-radius: 16px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
 }
 
 .card h3 {
-  font-size: 0.95rem;
-  color: #666666;
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .card p {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #2e7d32;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 10px 0;
 }
+
+.card-footer {
+  font-size: 0.75rem;
+  color: #64748b;
+  display: block;
+}
+
+/* Variantes de LED para cada Card */
+.card-neon-green {
+  border-top: 3px solid #00ff88;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+}
+.card-neon-green p { color: #00ff88; text-shadow: 0 0 8px rgba(0, 255, 136, 0.5); }
+
+.card-neon-red {
+  border-top: 3px solid #ff4757;
+  box-shadow: 0 0 15px rgba(255, 71, 87, 0.15);
+}
+.card-neon-red p { color: #ff4757; text-shadow: 0 0 8px rgba(255, 71, 87, 0.5); }
+
+.card-neon-blue {
+  border-top: 3px solid #00d2d3;
+  box-shadow: 0 0 15px rgba(0, 210, 211, 0.15);
+}
+.card-neon-blue p { color: #00d2d3; text-shadow: 0 0 8px rgba(0, 210, 211, 0.5); }
+
+.card-neon-yellow {
+  border-top: 3px solid #ffa502;
+  box-shadow: 0 0 15px rgba(255, 165, 2, 0.15);
+}
+.card-neon-yellow p { color: #ffa502; text-shadow: 0 0 8px rgba(255, 165, 2, 0.5); }
+
+.card-neon-purple {
+  border-top: 3px solid #a55eea;
+  box-shadow: 0 0 15px rgba(165, 94, 234, 0.15);
+}
+.card-neon-purple p { color: #a55eea; text-shadow: 0 0 8px rgba(165, 94, 234, 0.5); }
 
 .status-frequencia {
+  font-size: 0.75rem;
+  color: #a55eea;
   display: block;
-  font-size: 0.8rem;
-  color: #555555;
-  margin-top: 0.3rem;
 }
 
-/* Tabela Responsiva */
+/* Tabela Futurista */
 .tabela-container {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  overflow-x: auto; /* Permite rolar pro lado no celular se não couber */
-  padding: 1rem;
+  background: #131c2e;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  overflow-x: auto;
+}
+
+.tabela-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.tabela-header h2 {
+  font-size: 1.2rem;
+  color: #f8fafc;
+}
+
+.tag-count {
+  background: #1e293b;
+  color: #00ff88;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  border: 1px solid #00ff88;
 }
 
 table {
@@ -92,21 +181,37 @@ table {
 }
 
 th, td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 14px 16px;
+  border-bottom: 1px solid #1e293b;
 }
 
 th {
-  background-color: #e8f5e9; /* Fundo verde bem suave no cabeçalho da tabela */
-  color: #1b5e20;
-  font-weight: bold;
+  background-color: #172437;
+  color: #00ff88;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
 }
 
-tr:nth-child(even) {
-  background-color: #f9f9f9; /* Zebra light nas linhas da tabela */
+tr:hover {
+  background-color: #1a273e;
 }
 
-/* Destaque das situações */
+/* Estilos de Situação com LED Glow */
 .status-bom {
-  color: #2e7d32;
-  font-weight:
+  color: #00ff88;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(0, 255, 136, 0.4);
+}
+
+.status-atencao {
+  color: #ff4757;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(255, 71, 87, 0.4);
+}
+
+.status-indisponivel {
+  color: #64748b;
+  font-style: italic;
+}
