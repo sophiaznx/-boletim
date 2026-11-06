@@ -14,70 +14,91 @@
       <span class="badge-status">ONLINE</span>
       <h1>BOLETIM DIGITAL</h1>
     </div>
-    <p class="subtitulo">9º ANO | ESTUDANTE EXEMPLO</p>
+    <p class="subtitulo">9º ANO | TURMA 9B | Nº 32</p>
   </header>
 
   <main class="container">
-    <!-- Cards estilo LED Cyberpunk -->
-    <section class="cards-resumo">
-      <div class="card card-neon-green">
-        <div class="card-icon">📊</div>
-        <h3>Média Geral</h3>
-        <p id="media-geral">—</p>
-        <span class="card-footer">Desempenho Geral</span>
+    <!-- Tela de Acesso por PIN -->
+    <section id="secao-login" class="card-login">
+      <h2>Acesso ao Boletim</h2>
+      <p>Digite seu PIN para acessar as notas:</p>
+      <div class="login-form">
+        <input type="password" id="input-pin" placeholder="Digite seu PIN" maxlength="10">
+        <button id="btn-entrar" onclick="fazerLogin()">Entrar</button>
       </div>
-
-      <div class="card card-neon-red">
-        <div class="card-icon">⚠️</div>
-        <h3>Total de Faltas</h3>
-        <p id="total-faltas">—</p>
-        <span class="card-footer">Faltas Acumuladas</span>
-      </div>
-
-      <div class="card card-neon-blue">
-        <div class="card-icon">🏆</div>
-        <h3>Bom Desempenho</h3>
-        <p id="qtd-bom-desempenho">—</p>
-        <span class="card-footer">Disciplinas Acima da Média</span>
-      </div>
-
-      <div class="card card-neon-yellow">
-        <div class="card-icon">📌</div>
-        <h3>Precisa de Atenção</h3>
-        <p id="qtd-atencao">—</p>
-        <span class="card-footer">Disciplinas Abaixo de 6,0</span>
-      </div>
-
-      <div class="card card-neon-purple">
-        <div class="card-icon">⚡</div>
-        <h3>Frequência</h3>
-        <p id="frequencia">92%</p>
-        <span class="status-frequencia">Frequência adequada</span>
-      </div>
+      <p id="msg-login" class="msg-status"></p>
     </section>
 
-    <!-- Tabela Estilizada com Efeito de Brilho -->
-    <section class="tabela-container">
-      <div class="tabela-header">
-        <h2>Detalhamento por Disciplina</h2>
-        <span class="tag-count">15 Matérias</span>
+    <!-- Área principal do Boletim (inicialmente oculta) -->
+    <div id="area-boletim" style="display: none;">
+      <!-- Painel de Ações do Aluno -->
+      <div class="bar-acoes">
+        <button id="btn-alternar-edicao" class="btn-neon" onclick="alternarModoEdicao()">Alterar dados</button>
+        <button id="btn-salvar" class="btn-neon btn-salvar" onclick="salvarDadosAPI()" style="display: none;">Salvar alterações</button>
+        <span id="msg-salvar" class="msg-status"></span>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Disciplina</th>
-            <th>1º Tri</th>
-            <th>2º Tri</th>
-            <th>3º Tri</th>
-            <th>Média</th>
-            <th>Faltas</th>
-            <th>Situação</th>
-          </tr>
-        </thead>
-        <tbody id="corpo-tabela">
-        </tbody>
-      </table>
-    </section>
+
+      <!-- Cards estilo LED Cyberpunk -->
+      <section class="cards-resumo">
+        <div class="card card-neon-green">
+          <div class="card-icon">📊</div>
+          <h3>Média Geral</h3>
+          <p id="media-geral">—</p>
+          <span class="card-footer">Desempenho Geral</span>
+        </div>
+
+        <div class="card card-neon-red">
+          <div class="card-icon">⚠️</div>
+          <h3>Total de Faltas</h3>
+          <p id="total-faltas">—</p>
+          <span class="card-footer">Faltas Acumuladas</span>
+        </div>
+
+        <div class="card card-neon-blue">
+          <div class="card-icon">🏆</div>
+          <h3>Bom Desempenho</h3>
+          <p id="qtd-bom-desempenho">—</p>
+          <span class="card-footer">Disciplinas Acima da Média</span>
+        </div>
+
+        <div class="card card-neon-yellow">
+          <div class="card-icon">📌</div>
+          <h3>Precisa de Atenção</h3>
+          <p id="qtd-atencao">—</p>
+          <span class="card-footer">Disciplinas Abaixo de 6,0</span>
+        </div>
+
+        <div class="card card-neon-purple">
+          <div class="card-icon">⚡</div>
+          <h3>Frequência</h3>
+          <p id="frequencia">92%</p>
+          <span class="status-frequencia">Frequência adequada</span>
+        </div>
+      </section>
+
+      <!-- Tabela Estilizada com Efeito de Brilho -->
+      <section class="tabela-container">
+        <div class="tabela-header">
+          <h2>Detalhamento por Disciplina</h2>
+          <span id="tag-count-materias" class="tag-count">15 Matérias</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Disciplina</th>
+              <th>1º Tri</th>
+              <th>2º Tri</th>
+              <th>3º Tri</th>
+              <th>Média</th>
+              <th>Faltas</th>
+              <th>Situação</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela">
+          </tbody>
+        </table>
+      </section>
+    </div>
   </main>
 
   <script src="script.js"></script>

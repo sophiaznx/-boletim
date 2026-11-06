@@ -57,6 +57,105 @@ header h1 {
   margin: 0 auto;
 }
 
+/* Tela de Login PIN */
+.card-login {
+  background: #131c2e;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 420px;
+  margin: 2rem auto;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.15);
+  text-align: center;
+}
+
+.card-login h2 {
+  color: #00ff88;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.card-login p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.login-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.login-form input {
+  background: #0b0f19;
+  border: 1px solid #1e293b;
+  color: #00ff88;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  width: 60%;
+  text-align: center;
+}
+
+.login-form input:focus {
+  border-color: #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+}
+
+.login-form button, .btn-neon {
+  background: #00ff88;
+  color: #0b0f19;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.login-form button:hover, .btn-neon:hover {
+  background: #52ffab;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+}
+
+.bar-acoes {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 1.5rem;
+}
+
+.btn-salvar {
+  background: #00d2d3;
+  box-shadow: 0 0 10px rgba(0, 210, 211, 0.3);
+}
+
+.btn-salvar:hover {
+  background: #54a0ff;
+  box-shadow: 0 0 15px rgba(0, 210, 211, 0.6);
+}
+
+.msg-status {
+  font-size: 0.85rem;
+  margin-top: 10px;
+  display: block;
+}
+
+.msg-erro {
+  color: #ff4757;
+}
+
+.msg-sucesso {
+  color: #00ff88;
+}
+
+.msg-info {
+  color: #00d2d3;
+}
+
 /* Grid dos Cards Resumo */
 .cards-resumo {
   display: flex;
@@ -141,7 +240,7 @@ header h1 {
   display: block;
 }
 
-/* Tabela Futurista */
+/* Tabela Futurista e Campos de Edição */
 .tabela-container {
   background: #131c2e;
   border-radius: 16px;
@@ -196,6 +295,29 @@ th {
 
 tr:hover {
   background-color: #1a273e;
+}
+
+/* Inputs da Tabela no Modo Edição */
+.input-edicao {
+  background: #0b0f19;
+  border: 1px solid #334155;
+  color: #ffffff;
+  padding: 6px;
+  border-radius: 6px;
+  width: 60px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.input-edicao:focus {
+  border-color: #00ff88;
+  outline: none;
+}
+
+.input-invalido {
+  border-color: #ff4757 !important;
+  background-color: rgba(255, 71, 87, 0.1) !important;
+  box-shadow: 0 0 8px rgba(255, 71, 87, 0.5);
 }
 
 /* Estilos de Situação com LED Glow */
